@@ -16,6 +16,7 @@ def inference(
     user_id="256",
     assistant_id=None,
     skill_id=None,
+    environment_id=None,
     intent_to_action_mapping=None,
     timeout=1,
 ):
@@ -27,6 +28,7 @@ def inference(
     :parameter: max_thread: the max number of threads to use for multi-threaded inference
     :parameter: verbose: flag indicates verbosity of outputs during mutli-threaded inference
     :parameter: assistant_id:
+    :parameter: environment_id:
     :parameter: intent_to_action_mapping:
     :parameter: timeout: integer or float that specifies number of seconds each thread should wait for inference result
     :return result_df: results dataframe
@@ -53,6 +55,7 @@ def inference(
                         alternate_intents=True,
                         user_id=user_id,
                         assistant_id=assistant_id,
+                        environment_id=environment_id,
                         skill_id=skill_id,
                     )
                     time.sleep(0.3)
@@ -129,6 +132,7 @@ def thread_inference(
     user_id="256",
     assistant_id=None,
     skill_id=None,
+    environment_id=None,
     intent_to_action_mapping=None,
     timeout=1,
 ):
@@ -141,6 +145,7 @@ def thread_inference(
     :param verbose: verbosity of output
     :param user_id: user_id for billing purpose
     :param assistant_id:
+    :param environment_id:
     :parameter: intent_to_action_mapping:
     :parameter: timeout: integer or float that specifies number of seconds each thread should wait for inference result
     :return result_df: results dataframe
@@ -162,6 +167,7 @@ def thread_inference(
                 user_id=user_id,
                 assistant_id=assistant_id,
                 skill_id=skill_id,
+                environment_id=environment_id,
             )
         except Exception:
             count += 1
@@ -248,6 +254,7 @@ def get_intent_confidence_retry(
     user_id,
     assistant_id,
     skill_id,
+    environment_id,
     retry=0,
 ):
     try:
@@ -258,6 +265,7 @@ def get_intent_confidence_retry(
             user_id=user_id,
             assistant_id=assistant_id,
             skill_id=skill_id,
+            environment_id=environment_id,
         )
     except Exception as e:
         if retry < MAX_RETRY:
@@ -268,6 +276,7 @@ def get_intent_confidence_retry(
                 user_id,
                 assistant_id,
                 skill_id,
+                environment_id,
                 retry=retry + 1,
             )
         else:
