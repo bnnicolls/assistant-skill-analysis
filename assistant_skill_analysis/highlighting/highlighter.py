@@ -25,6 +25,7 @@ def get_highlights_in_batch_multi_thread(
     lang_util,
     skill_id=None,
     assistant_id=None,
+    environment_id=None,
     intent_to_action_mapping=None,
 ):
     """
@@ -38,6 +39,7 @@ def get_highlights_in_batch_multi_thread(
     :param confidence_threshold: the confidence threshold for offtopic detection
     :param show_worst_k: the top worst k results based on heuristics
     :param assistant_id:
+    :param environment_id:
     :param intent_to_action_mapping:
     :return:
     """
@@ -67,6 +69,7 @@ def get_highlights_in_batch_multi_thread(
         conversation=conversation,
         skill_id=skill_id,
         assistant_id=assistant_id,
+        environment_id=environment_id,
         intent_to_action_mapping=intent_to_action_mapping,
     )
 
@@ -252,6 +255,7 @@ def _adversarial_examples_multi_thread_inference(
     conversation,
     skill_id=None,
     assistant_id=None,
+    environment_id=None,
     intent_to_action_mapping=None,
 ):
     """
@@ -260,6 +264,7 @@ def _adversarial_examples_multi_thread_inference(
     :param conversation:
     :param skill_id:
     :param assistant_id:
+    :param environment_id:
     :param intent_to_action_mapping:
     """
     if isinstance(conversation, ibm_watson.AssistantV1):
@@ -298,6 +303,7 @@ def _adversarial_examples_multi_thread_inference(
         max_thread=min(4, os.cpu_count() if os.cpu_count() else 1),
         skill_id=skill_id,
         assistant_id=assistant_id,
+        environment_id=environment_id,
         intent_to_action_mapping=intent_to_action_mapping,
     )
     display(Markdown("   "))
