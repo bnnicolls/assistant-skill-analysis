@@ -119,6 +119,7 @@ def inference(
             user_id=user_id,
             skill_id=skill_id,
             assistant_id=assistant_id,
+            environment_id=environment_id,
             intent_to_action_mapping=intent_to_action_mapping,
             timeout=timeout,
         )
