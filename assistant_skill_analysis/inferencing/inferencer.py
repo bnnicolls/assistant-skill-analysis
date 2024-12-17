@@ -185,6 +185,7 @@ def thread_inference(
             alternative_intents=True,
             user_id=user_id,
             assistant_id=assistant_id,
+            environment_id=environment_id,
             skill_id=skill_id,
             retry=0,
         )
